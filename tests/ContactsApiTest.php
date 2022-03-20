@@ -7,7 +7,7 @@ use Faker\Factory;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 use Symfony\Component\HttpFoundation\Request;
 
-class ApiFlowTest extends ApiTestCase
+class ContactsApiTest extends ApiTestCase
 {
     use ReloadDatabaseTrait;
 
@@ -27,7 +27,7 @@ class ApiFlowTest extends ApiTestCase
         $response = $client->request(Request::METHOD_POST, '/api/contacts', [
             'json' => [
                 "name" => "email",
-                "content" => $email
+                "content" => $email,
             ]
         ]);
 
@@ -40,6 +40,21 @@ class ApiFlowTest extends ApiTestCase
         $this->assertJsonContains(["hydra:totalItems" => 1]);
     }
 
+    public function testCannotCreateContactWithBadData(): void
+    {
+        $client = static::createClient();
+        $faker = Factory::create();
+        $email = $faker->email();
+        $response = $client->request(Request::METHOD_POST, '/api/contacts', [
+            'json' => [
+                "name" => 1,
+                "content" => 2,
+            ]
+        ]);
+
+        $this->assertResponseStatusCodeSame(400);
+    }
+
     public function testCanCreateContactAndUpdateIt(): void
     {
         $client = static::createClient();
@@ -48,7 +63,7 @@ class ApiFlowTest extends ApiTestCase
         $response = $client->request(Request::METHOD_POST, '/api/contacts', [
             'json' => [
                 "name" => "email",
-                "content" => $initialEmail
+                "content" => $initialEmail,
             ]
         ]);
 
@@ -59,7 +74,7 @@ class ApiFlowTest extends ApiTestCase
         $response = $client->request(Request::METHOD_PUT, $response->toArray()['@id'], [
             'json' => [
                 "name" => "email",
-                "content" => $secondEmail
+                "content" => $secondEmail,
             ]
         ]);
 
@@ -82,7 +97,7 @@ class ApiFlowTest extends ApiTestCase
         $response = $client->request(Request::METHOD_POST, '/api/contacts', [
             'json' => [
                 "name" => "email",
-                "content" => $email
+                "content" => $email,
             ]
         ]);
 
@@ -106,7 +121,7 @@ class ApiFlowTest extends ApiTestCase
         $response = $client->request(Request::METHOD_POST, '/api/contacts', [
             'json' => [
                 "name" => "email",
-                "content" => $email
+                "content" => $email,
             ]
         ]);
 
@@ -116,7 +131,7 @@ class ApiFlowTest extends ApiTestCase
         $secondEmail = $faker->email();
         $response = $client->request(Request::METHOD_PATCH, $response->toArray()['@id'], [
             'json' => [
-                "content" => $secondEmail
+                "content" => $secondEmail,
             ]
         ]);
 

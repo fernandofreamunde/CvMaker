@@ -44,8 +44,8 @@ the entity fields are:
 
 - **id**: _int_ (same as above ...)
 - **schoolName**: _string_ (name of the education institution)
-- **courseName**: _string_ (the name of the course studied)
-- **graduationYear**: _string_ (the year the studies were completed)
+- **degreeName**: _string_ (the name of the course/degree studied)
+- **graduationYear**: _string_ (the year the studies were completed set to null if not completed)
 
 #### WorkExperience
 
