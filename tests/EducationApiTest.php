@@ -3,6 +3,7 @@
 namespace App\Tests;
 
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
+use App\Tests\helper\HelperTrait;
 use Faker\Factory;
 use Exception;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
@@ -16,6 +17,7 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 class EducationApiTest extends ApiTestCase
 {
     use ReloadDatabaseTrait;
+    use HelperTrait;
 
     public function testEducationCanBeListed(): void
     {
@@ -205,13 +207,5 @@ class EducationApiTest extends ApiTestCase
         $fakeSubjects = ['Frontend', 'Backend', 'Fullstack', 'Rest Api', 'GraphQL'];
 
         return $this->getRandomItem($fakeDegrees) . ' in ' . $this->getRandomItem($fakeSubjects);
-    }
-
-    /**
-     * @throws Exception
-     */
-    private function getRandomItem(array $array)
-    {
-        return $array[random_int(0, count($array) - 1)];
     }
 }
