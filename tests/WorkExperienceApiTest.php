@@ -183,7 +183,7 @@ class WorkExperienceApiTest extends ApiTestCase
             ]
         ]);
 
-        $this->assertResponseStatusCodeSame(415);
+        $this->assertResponseStatusCodeSame(405);
     }
 
     private function getRandomRole()

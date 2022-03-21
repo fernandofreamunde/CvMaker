@@ -7,7 +7,10 @@ use App\Repository\WorkExperienceRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: WorkExperienceRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    collectionOperations: ['GET', 'POST'],
+    itemOperations: ['GET', 'PUT', 'DELETE']
+)]
 class WorkExperience
 {
     #[ORM\Id]
