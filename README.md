@@ -54,8 +54,8 @@ the entity fields are:
 - **id**: _int_ (...)
 - **companyName**: _string_ (name of the company)
 - **role**: _string_ (the role played during this job)
-- **startingDate**: _datetime_ (when the role started)
-- **endingDate**: _datetime_ (if null it is an ongoing job)
+- **startingDate**: _date_ (when the role started)
+- **endingDate**: _date_ (if null it is an ongoing job)
 - **description**: _text_ (description of the tasks performed in this job)
 
 #### Skills
